@@ -18,3 +18,6 @@ function alternate(s) {
 }
 
 alternate('beabeefeab');
+//beabefeab ----remove consecutives
+//beaf ----- unique characters
+//bea --- only loop this
