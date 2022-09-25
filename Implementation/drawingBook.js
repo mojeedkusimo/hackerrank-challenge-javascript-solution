@@ -1,27 +1,36 @@
 function pageCount(n, p) {
     // Write your code here
 
-    let noOfFlip = 0;
+    let noOfFrontFlip = 0;
+    let noOfBacktFlip = 0;
 
-    let viewPage = (i,n) => {
-        noOfFlip++;
-        if (i === n) {
-            console.log([i]);
-            return;
+    let viewPage = (i,n, func) => {
+       if (func === flipBackToFront) {
+            if (i >= p) { 
+                noOfBacktFlip++;
+                if (i === n) {
+                    return;
+                }
+            }
+        } 
+        else {
+            if (i <= p) { 
+                noOfFrontFlip++;
+                if (i === n) {
+                    return;
+                }
+            }
         }
-
-        console.log([i, i+1]);
-  
     }
 
     let viewPageOddB2F = (i,n) => {
-        noOfFlip++;
-        if (i === n & (n % 2 === 0)) {
-            console.log([i]);
-            return;
+        if (i >= p) {
+            noOfBacktFlip++;
+            if (i === n & (n % 2 === 0)) {
+                return;
+            } 
         }
 
-        console.log([i-1, i]);
   
     }
 
@@ -29,7 +38,7 @@ function pageCount(n, p) {
 
     let flipFrontToBack = () => {
         for (let i=0; i < n+1; i++) {
-            viewPage(i, n);
+            viewPage(i, n, flipFrontToBack);
             i++;
         }
     }
@@ -39,8 +48,10 @@ function pageCount(n, p) {
 
         if (n % 2 === 0) {
             for (let i=n; i > -1; i--) {
-                viewPage(i, n);
-                i--;
+                viewPage(i, n, flipBackToFront);
+                if (n - p !== 1) {
+                    i--;
+                }
             }
             return;
         }
@@ -54,8 +65,8 @@ function pageCount(n, p) {
     flipFrontToBack();
     flipBackToFront();
 
-    console.log(noOfFlip);
+    console.log(Math.min(noOfFrontFlip -1, noOfBacktFlip -1));
 
 }
 
-pageCount(10,2);
+pageCount(8,7);
