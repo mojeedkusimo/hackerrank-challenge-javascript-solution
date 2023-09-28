@@ -11,15 +11,26 @@ function squares(a, b) {
     let squareCounter = 0;
 
     for ( let i = a; i < b + 1; i++ ) {
-        let testSqr = Math.sqrt(i);
+        for ( let j = 1; j < i + 1; j++ ) {
 
-        if ( Number.isInteger(testSqr) ) {
-            squareCounter++;
-        }      
+            console.log(j, i, j*j);
+            if ( j * j === i ) {
+                squareCounter++;
+            }
+            
+        }
+        // let testSqr = Math.sqrt(i);
+        // let testSqrStr = `${testSqr}`;
+        // let testSqrStrArray = testSqrStr.split('');
+
+
+        // if ( Number.isInteger(testSqr) ) {
+        //     squareCounter++;
+        // }      
     }
 
     console.log(squareCounter);
     return squareCounter;
 }
 
-squares(1,6);
+squares(1,10);
